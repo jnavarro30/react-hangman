@@ -1,0 +1,48 @@
+// settings
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+// variables
+$primaryOrange: rgba(255, 140, 4, 0.9);
+$primaryFont: 'Bungee Inline', cursive;
+
+.App {
+    font-family: $primaryFont;
+    background-color: rgba(0, 0, 0, 0.4);
+    height: 100vh;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    img {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        z-index: -1;
+    }
+
+    main {
+        height: 90%;
+        width: 90%;
+        background-color: rgba(0, 0, 0, 0.9);
+        border: 2px solid $primaryOrange;
+    }
+}
+
+// partials
+@import "./home";
+
+
+// responsive
+@media(min-width: 700px) {
+    .App {
+        main {
+            width: 80%;
+            height: 85%;
+        }
+    }
+}
