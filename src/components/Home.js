@@ -2,12 +2,12 @@ import React from 'react'
 import click from "../audio/click.mp3";
 
 export default function Home() {
-    const soundEffect = _ => new Audio(click).play();
+    const soundEffectHandler = _ => new Audio(click).play();
     return (
         <div className="main">
             <h1>Hangman</h1>
-            <button onClick={soundEffect}>New Game</button>
-            <button onClick={soundEffect}>How to Play</button>
+            <button onClick={soundEffectHandler}>New Game</button>
+            <button onClick={soundEffectHandler}>How to Play</button>
         </div>
     );
 }

@@ -5,12 +5,12 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    
+  
     h1 {
         font-size: 3.8rem;
         font-weight: 100;
         color: $primaryOrange;
-        margin-bottom: 35%;
+        transform: translateY(-60%);
         border-bottom: 5px solid black;
         animation: title 3s;
     }
@@ -22,7 +22,7 @@
         border: 5px solid black;
         margin: 1rem;
         padding: 1rem 2rem;
-        animation: buttons 4s;
+        transform: translateY(50%);
         
         &:hover {
             cursor: pointer;
@@ -32,11 +32,19 @@
             box-shadow: 0 0 10px 10px;
         }
     }
+
+    :nth-child(2) {
+        animation: buttonOne 3s;
+    }
+
+    :nth-child(3) {
+        animation: buttonTwo 3s;
+    }
 }
 
 @keyframes title {
     0% { 
-        margin: 0;
+      
         opacity: 0;
         color: rgba(0, 0, 0, 0);
         text-shadow: 10px 10px $primaryOrange;
@@ -48,13 +56,16 @@
     }
 
     100% { 
-        margin-bottom: 35%;
+        
         opacity: 1;
      }
 }
 
-@keyframes buttons {
-    0% { opacity: 0 }
+@keyframes buttonOne {
+    0% {
+        transform: translateX(-50%); 
+        opacity: 0 
+    }
     
     50% { 
         background-color: black;
@@ -63,6 +74,21 @@
     }
     100% { opacity: 1; }
 }
+
+@keyframes buttonTwo {
+    0% {
+        transform: translateX(50%); 
+        opacity: 0 
+    }
+    
+    50% { 
+        background-color: black;
+        color: $primaryOrange;
+        box-shadow: 0 0 10px 10px;
+    }
+    100% { opacity: 1; }
+}
+
 
 // responsiveness
 
