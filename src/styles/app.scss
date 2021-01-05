@@ -9,6 +9,30 @@
 $primaryOrange: rgba(255, 140, 4, 0.9);
 $primaryFont: 'Bungee Inline', cursive;
 
+//mixins 
+@mixin headers {
+    font-size: 3.4rem;
+    font-weight: 100;
+    color: $primaryOrange;
+    border-bottom: 5px solid black;
+}
+
+@mixin buttons {
+    font-size: 1.4rem;
+    font-family: $primaryFont;
+    background-color: $primaryOrange;
+    border: 5px solid black;
+    margin: 0.5rem;
+    padding: 0.5rem 2rem;
+    
+    &:hover {
+        cursor: pointer;
+        background-color: black;
+        color: $primaryOrange;
+        box-shadow: 0 0 10px 10px;
+    }
+}
+
 .App {
     font-family: $primaryFont;
     background-color: rgba(0, 0, 0, 0.4);
@@ -35,7 +59,7 @@ $primaryFont: 'Bungee Inline', cursive;
 
 // partials
 @import "./home";
-
+@import "./instructions";
 
 // responsive
 @media(min-width: 700px) {
@@ -43,6 +67,15 @@ $primaryFont: 'Bungee Inline', cursive;
         main {
             width: 80%;
             height: 85%;
+        }
+    }
+}
+
+@media(min-width: 1000px) {
+    .App {
+        main {
+            width: 75%;
+            height: 80%;
         }
     }
 }

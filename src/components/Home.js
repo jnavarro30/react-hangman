@@ -1,10 +1,9 @@
 import React from 'react'
-import click from "../audio/click.mp3";
 
-export default function Home() {
-    const soundEffectHandler = _ => new Audio(click).play();
+export default function Home({ soundEffectHandler }) {
+    
     return (
-        <div className="main">
+        <div className="home">
             <h1>Hangman</h1>
             <button onClick={soundEffectHandler}>New Game</button>
             <button onClick={soundEffectHandler}>How to Play</button>
