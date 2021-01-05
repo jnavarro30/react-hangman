@@ -15,8 +15,8 @@ function App() {
     <div className="App">
       <img src={backgroundIMG} alt="rope" />
       <main>
-        {1 == 2 ? <Instructions soundEffectHandler={soundEffectHandler} /> : null}
-        <Home soundEffectHandler={soundEffectHandler} />
+        {1 == 2 ? <Home soundEffectHandler={soundEffectHandler} /> : null}
+        <Instructions soundEffectHandler={soundEffectHandler} />
       </main>
    </div>
   );

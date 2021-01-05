@@ -7,7 +7,8 @@
 
 // variables
 $primaryOrange: rgba(255, 140, 4, 0.9);
-$primaryFont: 'Bungee Inline', cursive;
+$primaryFont: 'Bungee Inline',
+cursive;
 
 //mixins 
 @mixin headers {
@@ -24,7 +25,7 @@ $primaryFont: 'Bungee Inline', cursive;
     border: 5px solid black;
     margin: 0.5rem;
     padding: 0.5rem 2rem;
-    
+
     &:hover {
         cursor: pointer;
         background-color: black;
@@ -33,6 +34,28 @@ $primaryFont: 'Bungee Inline', cursive;
     }
 }
 
+@mixin minWidth700px {
+    h1 {
+        font-size: 4.6rem;
+    }
+
+    button {
+        font-size: 2rem;
+        margin: 1rem;
+    }
+}
+
+@mixin minWidth1000px {
+    h1 {
+        font-size: 6rem;
+    }
+
+    button {
+        font-size: 3rem;
+    }
+}
+
+// App
 .App {
     font-family: $primaryFont;
     background-color: rgba(0, 0, 0, 0.4);
