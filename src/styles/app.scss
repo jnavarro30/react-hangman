@@ -10,20 +10,18 @@ $primaryOrange: rgba(255, 140, 4, 0.9);
 $primaryFont: 'Bungee Inline',
 cursive;
 
-//mixins 
-@mixin headers {
-    font-size: 3.4rem;
+// mixins
+@mixin titles {
     font-weight: 100;
     color: $primaryOrange;
-    border-bottom: 5px solid black;
+    border-bottom: 0.5rem solid black;
 }
 
-@mixin buttons {
-    font-size: 1.4rem;
+@mixin btns {
     font-family: $primaryFont;
     background-color: $primaryOrange;
     border: 5px solid black;
-    margin: 0.5rem;
+    margin: 1rem;
     padding: 0.5rem 2rem;
 
     &:hover {
@@ -31,27 +29,6 @@ cursive;
         background-color: black;
         color: $primaryOrange;
         box-shadow: 0 0 10px 10px;
-    }
-}
-
-@mixin minWidth700px {
-    h1 {
-        font-size: 4.6rem;
-    }
-
-    button {
-        font-size: 2rem;
-        margin: 1rem;
-    }
-}
-
-@mixin minWidth1000px {
-    h1 {
-        font-size: 6rem;
-    }
-
-    button {
-        font-size: 3rem;
     }
 }
 
@@ -64,6 +41,7 @@ cursive;
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 100vw;
 
     img {
         width: 100%;
@@ -83,22 +61,7 @@ cursive;
 // partials
 @import "./home";
 @import "./instructions";
+@import "./game";
+
 
 // responsive
-@media(min-width: 700px) {
-    .App {
-        main {
-            width: 80%;
-            height: 85%;
-        }
-    }
-}
-
-@media(min-width: 1000px) {
-    .App {
-        main {
-            width: 75%;
-            height: 80%;
-        }
-    }
-}

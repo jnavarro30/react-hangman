@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function Instructions({ soundEffectHandler }) {
+export default function Instructions({ activateComponent }) {
     return (
         <div className="instructions">
             <h1>Instructions</h1>
@@ -10,7 +10,7 @@ export default function Instructions({ soundEffectHandler }) {
                 <li>You have 7 lives to save Mr. Stick from the gallows.</li>
                 <li>Hyphenated words are possible.</li>
             </ul>
-            <button onClick={soundEffectHandler}>Main Menu</button>
+            <button onClick={() => activateComponent("home")}><i className="material-icons">home</i></button>
         </div>
     )
 }

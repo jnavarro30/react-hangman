@@ -1,12 +1,12 @@
 import React from 'react'
 
-export default function Home({ soundEffectHandler }) {
+export default function Home({ activateComponent }) {
     
     return (
         <div className="home">
             <h1>Hangman</h1>
-            <button onClick={soundEffectHandler}>New Game</button>
-            <button onClick={soundEffectHandler}>How to Play</button>
+            <button onClick={() => activateComponent("game")}>New Game</button>
+            <button onClick={() => activateComponent("instructions")}>How to Play</button>
         </div>
     );
 }

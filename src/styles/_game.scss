@@ -1,0 +1,142 @@
+.game {
+    height: 100%;
+    color: $primaryOrange;
+    display: flex;
+    flex-direction: column;
+
+    .stats {
+        display: grid;
+        
+        p:nth-child(1) {
+            margin: #{"min(2vmin, 1rem)"};
+            font-size: clamp(1rem, 4vmin, 1.8rem);
+            animation: instructions 3s ease;
+        }
+    
+        canvas {
+            border: 2px solid;
+            background-color: black;
+            height: 30vmin;
+            max-width: 350px;
+            margin: #{"min(2vmin, 1rem)"} auto;
+            animation: lettersGrid 2s ease;
+        }
+    
+        #chosenWord {
+            justify-self: center;
+            font-size: clamp(1.4rem, 6vmin, 2.5rem);
+            margin: #{"min(2vmin, 1rem)"};
+            animation: instructions 3s ease;
+        }
+    }
+
+    .alphabet {
+        flex-grow: 1;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(20vmin, 1fr));
+        font-weight: bold;
+
+        .letter {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: black;
+            border: 2px solid $primaryOrange;
+            font-size: 5vmin;
+            animation: lettersGrid 2s ease;
+            
+            // here
+        }
+    } 
+
+    button {
+        @include btns;
+        margin: 0;
+        padding: 0;
+        border: none;
+        animation: iconBtn 2s ease;
+
+        i {
+            font-size: clamp(1.5rem, 4.2vmin, 2.8rem);
+        }
+    }
+}
+
+// animation 
+@keyframes lettersGrid {
+    0% {
+        opacity: 0;
+    }
+
+    50% {
+        background-color: black;
+        color: $primaryOrange;
+        box-shadow: 0 0 10px 10px;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+// responsive
+@media (orientation: landscape) {
+    .game {
+        .stats {
+            grid-template-columns: 1fr 1fr 2fr;
+        }
+
+        p:nth-child(1) {
+            align-self: start;
+            justify-self: center; 
+        }
+    
+        #chosenWord {
+            align-self: center;
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// animation
+@keyframes letters {
+    0% {
+        opacity: 0;
+    }
+
+    50% {
+        background-color: $primaryOrange;
+        color: black;
+        box-shadow: 0 0 10px 10px;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+// responsive

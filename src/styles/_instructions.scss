@@ -1,57 +1,94 @@
 .instructions {
     height: 100%;
     display: grid;
-    justify-items: center;
-    align-items: start;
+    place-items: center;
+    color: $primaryOrange;
 
     h1 {
-        @include headers;
-        font-size: 2.8rem;
-        align-self: end;
+        @include titles;
+        font-size: clamp(1.8rem, 6.5vmin, 7rem);
+        animation: instructionTitle 1.5s ease;
     }
 
     ul {
-        height: 100%;
-        color: $primaryOrange;
+        width: #{"min(75vw, 900px)"};
+        align-self: stretch;
         list-style-position: inside;
-        font-size: 1.2rem;
-        margin: 1rem;
-
+        font-size: clamp(1.2rem, 4.8vmin, 2.5rem);
+        
         li {
             margin: 0.5rem;
+            animation: instructions 3s ease;
         }
     }
 
     button {
-        @include buttons;
-    }
-}
+        @include btns;
+        align-self: end;
+        justify-self: end;
+        padding: 0.5rem;
+        margin: 0.5rem;       
+        animation: iconBtn 1.5s ease;
 
-// responsiveness
-@media (min-width: 700px) {
-    .instructions {
-        @include minWidth700px;
-
-        ul {
-            font-size: 1.8rem;
-
-            li {
-                margin: 1rem;
-            }
+        i {
+            font-size: clamp(1.2rem, 6vmin, 5rem);
         }
     }
 }
 
-@media (min-width: 1000px) {
+//animation
+@keyframes instructionTitle {
+    0% {
+        opacity: 0;
+        color: rgba(0, 0, 0, 0);
+        text-shadow: 10px 10px $primaryOrange;
+    }
+
+    50% {
+        border-bottom: 5px solid $primaryOrange;
+        color: black;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes instructions {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes iconBtn {
+    0% {
+        opacity: 0;
+    }
+
+    50% {
+        background-color: black;
+        color: $primaryOrange;
+
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+// responsiveness
+@media (max-height: 320px) {
     .instructions {
-        @include minWidth1000px;
+        position: relative;
 
-        ul {
-            font-size: 2.4rem;
-
-            li {
-                margin: 1rem;
-            }
+        button {
+            position: absolute;
+            bottom: 0;
+            right: 0;
         }
     }
 }

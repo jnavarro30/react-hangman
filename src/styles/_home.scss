@@ -1,25 +1,29 @@
 .home {
     height: 100%;
     display: grid;
-    justify-content: center;
+    justify-items: center;
     align-items: end;
 
     h1 {
-        @include headers;
-        animation: title 3s;
+        @include titles;
+        font-size: clamp(3rem, 9vmin, 7rem);
+        animation: title 1s;
     }
 
     button {
-        @include buttons;
+        @include btns;
+        font-size: clamp(1.2rem, 5vmin, 2.8rem);
+        margin: clamp(0.5rem, 2vmin, 1rem);
+        padding: 0.5rem 2rem;
     }
 
     :nth-child(2) {
-        animation: buttonOne 3s;
+        animation: buttonOne 1s;
     }
 
     :nth-child(3) {
         align-self: start;
-        animation: buttonTwo 3s;
+        animation: buttonTwo 1s;
     }
 }
 
@@ -76,15 +80,3 @@
     }
 }
 
-// responsiveness
-@media (min-width: 700px) {
-    .home {
-        @include minWidth700px;
-    }
-}
-
-@media (min-width: 1000px) {
-    .home {
-        @include minWidth1000px;
-    }
-}
