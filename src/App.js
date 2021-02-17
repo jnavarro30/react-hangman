@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 // media
 import backgroundIMG from "./images/background_rope.jpg";
 import click from "./audio/click.mp3";
@@ -8,13 +8,19 @@ import "./styles/app.scss";
 import Home from "./components/Home";
 import Instructions from "./components/Instructions";
 import Game from "./components/Game";
+import Results from "./components/Results";
 
 function App() {
   const [isActive, setIsActive] = useState({
-    "home": false,
+    "home": true,
     "instructions": false,
-    "game": true
+    "game": false,
+    "results": false
   });
+  const [lives, setLives] = useState(7);
+  const [chosenWord, setChosenWord] = useState(null);
+  const [hiddenWord, setHiddenWord] = useState(null);
+  const [runWordnikApi, setRunWordnikApi] = useState(true);
 
   const activateComponent = (component) => {
     // button sound effect
@@ -22,32 +28,60 @@ function App() {
 
     switch (component) {
       case "instructions" :
-        setIsActive({"home": false, "instructions": true, "game": false});
+        setIsActive({"home": false, "instructions": true, "game": false, "results": false});
         break;
       case "game" :
-        setIsActive({"home": false, "instructions": false, "game": true});
+        setIsActive({"home": false, "instructions": false, "game": true, "results": false});
+        break;
+      case "results" :
+        setIsActive({"home": false, "instructions": false, "game": false, "results": true});
         break;
       default :
-        setIsActive({"home": true, "instructions": false, "game": false});
+        setIsActive({"home": true, "instructions": false, "game": false, "results": false});
     }
   }
+   
+  useEffect(() => {
+    const wordnikApi = async () => {
+        let request = await fetch(`http://api.wordnik.com/v4/words.json/randomWord?api_key=${process.env.REACT_APP_WORDNIK_API_KEY}`),
+            data = await request.json(),
+            word = data.word;
+
+        setChosenWord(word);
+        setHiddenWord("-".repeat(word.length));
+    }
+    wordnikApi();
+  }, [setChosenWord, setHiddenWord, runWordnikApi]);
   
   return (
     <div className="App">
       <img src={backgroundIMG} alt="rope" />
       <main>
-        { isActive.home ? <Home
+        <Home
           activateComponent={activateComponent}
-        /> : null}
-        { isActive.instructions ? <Instructions
+          isActive={isActive}
+        />
+        <Instructions
           activateComponent={activateComponent}
-        /> : null}
-        { isActive.game ? <Game 
-          activateComponent={activateComponent} 
-        /> : null}
+          isActive={isActive}
+        />
+        <Game 
+          activateComponent={activateComponent} isActive={isActive}
+          lives={lives} setLives={setLives}
+          chosenWord={chosenWord} setChosenWord={setChosenWord}
+          hiddenWord={hiddenWord} setHiddenWord={setHiddenWord}
+          runWordnikApi={runWordnikApi} setRunWordnikApi={setRunWordnikApi}
+        />
+        <Results 
+          isActive={isActive}
+        />
+        
       </main>
    </div>
   );
 }
 
 export default App;
+
+
+// Results component

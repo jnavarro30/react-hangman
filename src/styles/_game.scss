@@ -27,6 +27,7 @@
             font-size: clamp(1.4rem, 6vmin, 2.5rem);
             margin: #{"min(2vmin, 1rem)"};
             animation: instructions 3s ease;
+            letter-spacing: 1rem;
         }
     }
 
@@ -45,7 +46,10 @@
             font-size: 5vmin;
             animation: lettersGrid 2s ease;
             
-            // here
+            &:hover {
+                box-shadow: 0 0 10px 10px;
+                z-index: 10;
+            }
         }
     } 
 

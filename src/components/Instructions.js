@@ -1,8 +1,8 @@
 import React from 'react'
 
-export default function Instructions({ activateComponent }) {
+export default function Instructions({ activateComponent, isActive }) {
     return (
-        <div className="instructions">
+        <div className="instructions" style={{"display": isActive.instructions? "grid" : "none"}}>
             <h1>Instructions</h1>
             <ul>
                 <li>Guess the word with one letter at a time.</li>
