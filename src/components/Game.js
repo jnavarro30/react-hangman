@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 // media
 import click from "../audio/click.mp3";
+import win from "../audio/win.mp3";
+import lose from "../audio/lose.mp3";
 
 export default function Game({ activateComponent, isActive, lives, setLives,
-    chosenWord, setChosenWord, hiddenWord, setHiddenWord, runWordnikApi, setRunWordnikApi }) {
+    chosenWord, setChosenWord, hiddenWord, setHiddenWord, runWordnikApi, setRunWordnikApi, homeButton, setWinOrLose }) {
 
     const alphabet = () => {
         let arr = [...Array(123).keys()].slice(97);
@@ -26,7 +28,7 @@ export default function Game({ activateComponent, isActive, lives, setLives,
                 if(ltr === id) result[index] = id;
             });
 
-            setHiddenWord(result);
+            setHiddenWord(result.join(""));
         }
         else setLives((prevLives) => prevLives - 1);
         winLose();
@@ -34,29 +36,27 @@ export default function Game({ activateComponent, isActive, lives, setLives,
 
     const winLose = () => {
         if(chosenWord === hiddenWord) {
-            console.log("You Win!...");
+            new Audio(win).play();
+            setWinOrLose("Win");
             activateComponent("results");
         }
         if(lives === 1) {
-            console.log("You Lose!...");
+            new Audio(lose).play();
+            setWinOrLose("Lose");
             activateComponent("results");
         } 
     }
 
-    const homeButton = () => {
-        activateComponent("home");
-        const letterEls = document.getElementsByClassName("letter");
-        [...letterEls].forEach(elem => elem.style.visibility = "visible");
-        setRunWordnikApi(!runWordnikApi);
-        setLives(7);
-    }
+    useEffect(() => {
+        if(chosenWord && chosenWord === hiddenWord) winLose();
+    }, [chosenWord, hiddenWord])
 
     return (
         <div className="game" style={{"display": isActive.game? "flex" : "none"}}>
             <div className="stats">
                 <p>Lives: {lives}</p>
                 <canvas></canvas>
-                <p id="chosenWord" >{hiddenWord}</p>
+                <p id="chosenWord">{ hiddenWord }</p>
             </div>
              <div className="alphabet">
                 {

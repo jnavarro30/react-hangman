@@ -21,11 +21,10 @@ function App() {
   const [chosenWord, setChosenWord] = useState(null);
   const [hiddenWord, setHiddenWord] = useState(null);
   const [runWordnikApi, setRunWordnikApi] = useState(true);
+  const [winOrLose, setWinOrLose] = useState("Win");
 
   const activateComponent = (component) => {
-    // button sound effect
     new Audio(click).play();
-
     switch (component) {
       case "instructions" :
         setIsActive({"home": false, "instructions": true, "game": false, "results": false});
@@ -47,11 +46,20 @@ function App() {
             data = await request.json(),
             word = data.word;
 
-        setChosenWord(word);
+        setChosenWord(word.toLowerCase());
         setHiddenWord("-".repeat(word.length));
     }
     wordnikApi();
   }, [setChosenWord, setHiddenWord, runWordnikApi]);
+
+  const homeButton = () => {
+    
+    activateComponent("home");
+    const letterEls = document.getElementsByClassName("letter");
+    [...letterEls].forEach(elem => elem.style.visibility = "visible");
+    setRunWordnikApi(!runWordnikApi);
+    setLives(7);
+}
   
   return (
     <div className="App">
@@ -71,9 +79,15 @@ function App() {
           chosenWord={chosenWord} setChosenWord={setChosenWord}
           hiddenWord={hiddenWord} setHiddenWord={setHiddenWord}
           runWordnikApi={runWordnikApi} setRunWordnikApi={setRunWordnikApi}
+          homeButton={homeButton}
+          setWinOrLose={setWinOrLose}
         />
         <Results 
-          isActive={isActive}
+          activateComponent={activateComponent}
+          isActive={isActive} setIsActive={setIsActive}
+          homeButton={homeButton}
+          chosenWord={chosenWord}
+          winOrLose={winOrLose}
         />
         
       </main>
